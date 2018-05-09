@@ -1,0 +1,20 @@
+raygun.settings:
+  type: mapping
+  label: Settings
+  mapping:
+    raygun_apikey:
+      type: string
+    raygun_async_sending:
+      type: integer
+    raygun_send_version:
+      type: integer
+    raygun_application_version:
+      type: string
+    raygun_send_email:
+      type: integer
+    raygun_exceptions:
+      type: integer
+    raygun_error_handling:
+      type: integer
+    raygun_send_username:
+      type: integer

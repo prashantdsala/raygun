@@ -1,0 +1,8 @@
+raygun_apikey: ''
+raygun_async_sending: 1
+raygun_send_version: 1
+raygun_application_version: ''
+raygun_send_email: 1
+raygun_exceptions: 1
+raygun_error_handling: 1
+raygun_send_username: 1

@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file raygun.module
+ *
+ * Integrates Drupal with raygun.io for error tracking and alerting.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Retrieves the path to the PHP library for Raygun.io.
+ */
+function _raygun_get_library_path() {
+  return \Drupal::root() . '/libraries/raygun/src/Raygun4php/RaygunClient.php';
+}
+
+/**
+ * Implements hook_help().
+ */
+function raygun_help($route_name, RouteMatchInterface $route_match) {
+
+  switch ($route_name) {
+    // Main module help for the redirect_after_logout module.
+    case 'help.page.raygun':
+      return check_markup(file_get_contents(drupal_get_path('module', 'raygun') . "/README.txt"));
+
+  }
+}
+
+/**
+ * Error handler for Raygun.io.
+ */
+function raygun_error_handler($errno, $errstr, $errfile, $errline ) {
+  global $raygun_client;
+  $raygun_client->SendError($errno, $errstr, $errfile, $errline);
+}
+
+/**
+ * Exception handler for Raygun.io.
+ */
+function raygun_exception_handler($exception) {
+  global $raygun_client;
+  $raygun_client->SendException($exception);
+}
