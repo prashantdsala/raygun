@@ -1,5 +1,5 @@
 name: 'Raygun.io integration'
-description: 'Sends errors to raygun'
+description: 'Sends errors to Raygun.'
 core: 8.x
 type: module
 configure: raygun.admin_form

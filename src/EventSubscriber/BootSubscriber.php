@@ -43,41 +43,27 @@ class BootSubscriber extends ControllerBase implements EventSubscriberInterface 
 
   public function onEvent(GetResponseEvent $event) {
     $config = $this->configFactory->get('raygun.settings');
-    $apikey = trim($config->get('raygun_apikey'));
+    $apikey = trim($config->get('apikey'));
     if (file_exists(_raygun_get_library_path()) && !empty($apikey)) {
       $user = \Drupal::currentUser();
       global $raygun_client;
 
       require_once _raygun_get_library_path();
-      $raygun_client = new \Raygun4php\RaygunClient($config->get('raygun_apikey'), (bool) $config->get('raygun_async_sending'));
+      $raygun_client = new \Raygun4php\RaygunClient($config->get('apikey'), (bool) $config->get('async_sending'));
+      echo '<pre>';print_r($raygun_client);
 
-      if ($config->get('raygun_send_version') && $config->get('raygun_application_version') != '') {
-        $raygun_client->SetVersion($config->get('raygun_application_version'));
+      if ($config->get('send_version') && $config->get('application_version') != '') {
+        $raygun_client->SetVersion($config->get('application_version'));
       }
-      if ($config->get('raygun_send_email') && $user->id()) {
+      if ($config->get('send_email') && $user->id()) {
         $raygun_client->SetUser($user->getEmail());
       }
-      if ($config->get('raygun_exceptions')) {
-        set_exception_handler('raygun_exception_handler');
+      if ($config->get('exceptions')) {
+        set_exception_handler('exception_handler');
       }
-      if ($config->get('raygun_error_handling')) {
-        set_error_handler('raygun_error_handler');
+      if ($config->get('error_handling')) {
+        set_error_handler('error_handler');
       }
-      // Proxy support
-      // @FIXME
-      // // @FIXME
-      // // This looks like another module's variable. You'll need to rewrite this call
-      // // to ensure that it uses the correct configuration object.
-      // if ($proxy_server = variable_get('proxy_server', FALSE)) {
-      //       if ($proxy_port = variable_get('proxy_port', FALSE)) {
-      //         $raygun_client->setProxy('http://' . $proxy_server . ':' . $proxy_port);
-      //       }
-      //       else {
-      //         $raygun_client->setProxy('http://' . $proxy_server);
-      //       }
-      //     }
-
     }
   }
-
 }

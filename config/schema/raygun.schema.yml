@@ -2,19 +2,19 @@ raygun.settings:
   type: mapping
   label: Settings
   mapping:
-    raygun_apikey:
+    apikey:
       type: string
-    raygun_async_sending:
+    async_sending:
       type: integer
-    raygun_send_version:
+    send_version:
       type: integer
-    raygun_application_version:
+    application_version:
       type: string
-    raygun_send_email:
+    send_email:
       type: integer
-    raygun_exceptions:
+    exceptions:
       type: integer
-    raygun_error_handling:
+    error_handling:
       type: integer
-    raygun_send_username:
+    send_username:
       type: integer
