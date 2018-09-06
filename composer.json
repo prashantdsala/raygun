@@ -1,0 +1,19 @@
+{
+    "name": "drupal/raygun",
+    "description": "Raygun.io client for PHP 5.3, to send errors and exceptions automatically.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/raygun",
+    
+    "authors": [{
+        "name": "Mindscape",
+        "email": "contact@mindscape.co.nz",
+        "homepage": "http://www.mindscapehq.com"
+        }],
+    "keywords": ["raygun", "errors", "exceptions", "logging"],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "mindscape/raygun4php": "1.*"
+    }
+}
+
